@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Mohammad Ihsan Wadid — Computer Science, Ontario Tech</title>
 <meta name="description" content="Portfolio of Mohammad Ihsan Wadid, a Computer Science student at Ontario Tech University building retrieval systems, machine-learning models and real-time networking.">
 <meta name="author" content="Mohammad Ihsan Wadid">
@@ -11,17 +11,23 @@
 <meta property="og:title" content="Mohammad Ihsan Wadid — Portfolio">
 <meta property="og:description" content="Computer Science at Ontario Tech. Retrieval systems, machine learning and real-time networking.">
 <meta property="og:url" content="https://monkage.github.io/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://monkage.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mohammad Ihsan Wadid — Computer Science, Ontario Tech University">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://monkage.github.io/og.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Mohammad Ihsan Wadid","url":"https://monkage.github.io/","jobTitle":"Computer Science Student","affiliation":{"@type":"CollegeOrUniversity","name":"Ontario Tech University"},"address":{"@type":"PostalAddress","addressLocality":"Oshawa","addressRegion":"ON","addressCountry":"CA"},"sameAs":["https://www.linkedin.com/in/mohammad-ihsan-wadid","https://github.com/monkage"],"knowsAbout":["Python","Java","Machine Learning","Retrieval-Augmented Generation","FastAPI","PostgreSQL","pgvector","Docker"]}</script>
 <link rel="canonical" href="https://monkage.github.io/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>document.documentElement.classList.add('js');history.scrollRestoration='manual'</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Archivo:wght@300..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Archivo:wght@300..500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0B0607; --s1:#110A0B; --s2:#170E10; --s3:#211416;
-  --ink:#EEE8E6; --muted:#A39998; --faint:#685D5D;
+  --ink:#EEE8E6; --muted:#A39998; --faint:#8A7E7D;
   --line:#241A1C; --line-2:#3A2A2D;
   --brand:#7C1628; --brand-hi:#C44A5E;
   --serif:'Bodoni Moda',Didot,'Times New Roman',serif; --sans:'Archivo',system-ui,sans-serif;
@@ -29,11 +35,11 @@
   --gut:clamp(18px,4vw,64px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--bg)}
+html{background:var(--bg);overflow-x:clip}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 .lenis.lenis-stopped{overflow:hidden}
-body{background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--sans);overflow-x:clip;-webkit-font-smoothing:antialiased}
 ::selection{background:var(--brand);color:var(--ink)}
 a{color:inherit;text-decoration:none}
 #gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
@@ -46,7 +52,8 @@ main,footer,.panel{position:relative;z-index:1}
 .label b{color:var(--ink);font-weight:500}
 .num{font-family:var(--serif);font-style:italic;font-variant-numeric:lining-nums tabular-nums}
 .ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
-.ch{display:inline-block;white-space:pre}
+.w{display:inline-block;white-space:nowrap}
+.ch{display:inline-block}
 
 /* preloader */
 .pre{position:fixed;inset:0;z-index:500;background:var(--bg);display:none;clip-path:inset(0 0 0 0);transition:clip-path 1.3s var(--ease)}
@@ -81,6 +88,31 @@ nav a.u::after,.u::after{content:"";position:absolute;left:0;right:0;bottom:-4px
 .u:hover::after{transform:scaleX(1);transform-origin:left}
 .u{position:relative}
 nav .label:hover{color:var(--ink)}
+
+/* phone menu */
+.menu-btn{all:unset;cursor:pointer;display:none;position:relative;overflow:hidden;height:1.4em;line-height:1.4em;color:var(--ink);padding:8px 0;
+  font:500 .7rem/1.4 var(--sans);letter-spacing:.22em;text-transform:uppercase}
+.menu-btn span{display:block;transition:transform .7s var(--expo)}
+.menu-btn .mb-close{position:absolute;left:0;top:8px}
+.menu-btn .mb-close{transform:translateY(160%)}
+.menu-open .menu-btn .mb-open{transform:translateY(-160%)}
+.menu-open .menu-btn .mb-close{transform:none}
+.menu{position:fixed;inset:0;z-index:39;background:var(--bg);display:flex;align-items:flex-end;padding:96px 0 calc(36px + env(safe-area-inset-bottom));
+  clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .9s var(--ease),visibility 0s .9s}
+.menu-open .menu{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .9s var(--ease),visibility 0s}
+.menu .wrap{width:100%}
+.menu ul{list-style:none;border-top:1px solid var(--line)}
+.menu li{border-bottom:1px solid var(--line);overflow:hidden}
+.menu li a{display:flex;align-items:baseline;gap:18px;padding:16px 0;font-size:clamp(2.4rem,11vw,3.6rem);line-height:1.05;letter-spacing:-.02em;
+  transform:translateY(105%);transition:transform 1s var(--expo)}
+.menu li a .num{font-size:.9rem;color:var(--muted);min-width:24px}
+.menu-open .menu li a{transform:none}
+.menu-open .menu li:nth-child(2) a{transition-delay:.06s}
+.menu-open .menu li:nth-child(3) a{transition-delay:.12s}
+.menu-open .menu li:nth-child(4) a{transition-delay:.18s}
+.menu-open .menu li:nth-child(1) a{transition-delay:0s}
+.menu-foot{display:grid;gap:12px;margin-top:30px}
+.menu-open nav{background:var(--bg)}
 
 /* hero */
 .hero{min-height:100svh;display:flex;flex-direction:column;padding:150px 0 56px;position:relative}
@@ -202,7 +234,7 @@ nav .label:hover{color:var(--ink)}
 .presets button{all:unset;cursor:pointer;border:1px solid var(--line);padding:7px 12px;color:var(--muted);font-size:.8rem;font-weight:300;transition:border-color .5s,color .5s}
 .presets button:hover{border-color:var(--muted);color:var(--ink)}
 .hits{list-style:none;border-top:1px solid var(--line)}
-.hit{position:relative;display:grid;grid-template-columns:34px 1fr 46px;gap:10px;align-items:baseline;padding:11px 4px;border-bottom:1px solid var(--line);font-size:.86rem;line-height:1.5;transition:transform .7s var(--expo),padding .6s var(--expo),background .4s,box-shadow .4s;overflow:hidden}
+.hit{position:relative;display:grid;grid-template-columns:34px minmax(0,1fr) 46px;gap:10px;align-items:baseline;padding:11px 4px;border-bottom:1px solid var(--line);font-size:.86rem;line-height:1.5;transition:transform .7s var(--expo),padding .6s var(--expo),background .4s,box-shadow .4s;overflow:hidden}
 .hit .txt{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-weight:300}
 .hit .src{display:none;margin-top:6px}
 .hit .sc,.hit .k{font:400 .74rem 'JetBrains Mono';color:var(--faint)}
@@ -250,7 +282,7 @@ nav .label:hover{color:var(--ink)}
 
 /* contact + footer */
 .contact{min-height:100svh;display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:56px;padding-top:140px;padding-bottom:80px}
-.contact h2{font-size:clamp(3.2rem,8vw,8.6rem);line-height:.95}
+.contact h2{font-size:clamp(3rem,6.2vw,7rem);line-height:.95}
 .contact .mail{display:inline-block;margin-top:34px;font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,2.6vw,2.4rem)}
 .contact .mail::after{transform:scaleX(1);background:var(--brand)}
 .contact .mail:hover::after{background:var(--ink)}
@@ -261,9 +293,11 @@ footer .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-t
 footer .wrap > :last-child{justify-self:end}
 
 @media (max-width:900px){
-  nav .wrap{grid-template-columns:auto 1fr}
+  nav .wrap{grid-template-columns:auto 1fr auto;height:64px}
   nav ul,nav .who{display:none}
   nav .mark{justify-self:start}
+  .menu-btn{display:block;grid-column:3;justify-self:end}
+  .inter{height:150vh}
   .hero{padding-top:120px}
   .hero-foot{grid-template-columns:1fr}
   .meta-row span:last-child,.hint{display:none}
@@ -279,8 +313,23 @@ footer .wrap > :last-child{justify-self:end}
   .contact-stage{height:42vh;order:-1}
   .contact{padding-top:90px}
   footer .wrap{grid-template-columns:1fr 1fr}
-  .stats{gap:28px}
+  .stats{gap:20px}
+  .panel .bar .wrap{height:64px}
+  .panel h3{margin-top:44px}
+  .p-body{gap:44px;padding-top:40px}
 }
+@media (max-width:480px){
+  .cmds{grid-template-columns:repeat(2,1fr)}
+  .cmds button{margin-top:-1px}
+  .cta{padding:16px 18px}
+  .demo h4{font-size:1.9rem}
+}
+footer .wrap{padding-bottom:calc(30px + env(safe-area-inset-bottom))}
+.skip{position:fixed;left:16px;top:-70px;z-index:600;background:var(--ink);color:var(--bg);padding:12px 16px;font:500 .72rem var(--sans);letter-spacing:.2em;text-transform:uppercase;transition:top .3s}
+.skip:focus{top:16px}
+:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+.cmds button:focus-visible,.presets button:focus-visible,.q button:focus-visible,.panel .x:focus-visible,.menu-btn:focus-visible{outline:1px solid var(--ink);outline-offset:3px}
+.q input:focus-visible,.row:focus-visible,main:focus{outline:none}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important}
   .js [data-reveal],.js .fade{opacity:1;transform:none}
@@ -289,10 +338,11 @@ footer .wrap > :last-child{justify-self:end}
   .inter .big{--ls:-.02em;--rx:0deg;--tz:0px;--o:1}
 }
 </style>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js" defer></script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <div class="pre" id="pre" aria-hidden="true">
   <div class="mono serif"><span><i>IW</i></span></div>
   <div class="foot"><span class="label">Mohammad Ihsan Wadid — Portfolio</span><span class="count num" id="preCount">000</span></div>
@@ -310,9 +360,25 @@ footer .wrap > :last-child{justify-self:end}
     <li><a class="label u" href="#experience" data-cursor="link">Experience</a></li>
     <li><a class="label u" href="#contact" data-cursor="link">Contact</a></li>
   </ul>
+  <button class="menu-btn label" id="menuBtn" aria-expanded="false" aria-controls="menu"><span class="mb-open">Menu</span><span class="mb-close">Close</span></button>
 </div></nav>
 
-<main>
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="wrap">
+    <ul>
+      <li><a href="#work" class="serif"><span class="num">01</span>Work</a></li>
+      <li><a href="#skills" class="serif"><span class="num">02</span>Skills</a></li>
+      <li><a href="#experience" class="serif"><span class="num">03</span>Experience</a></li>
+      <li><a href="#contact" class="serif"><span class="num">04</span>Contact</a></li>
+    </ul>
+    <div class="menu-foot">
+      <a class="label u" href="mailto:ihsan.wadid123@gmail.com">ihsan.wadid123@gmail.com</a>
+      <span class="label"><a class="u" href="https://www.linkedin.com/in/mohammad-ihsan-wadid" target="_blank" rel="noopener">LinkedIn</a> · <a class="u" href="https://github.com/monkage" target="_blank" rel="noopener">GitHub</a> · <a class="u" href="resume.pdf" download="Mohammad_Ihsan_Wadid_Resume.pdf">Résumé</a></span>
+    </div>
+  </div>
+</div>
+
+<main id="main" tabindex="-1">
 <header class="hero" id="top">
   <div class="wrap">
     <div class="meta-row fade" style="--d:.2s">
@@ -479,12 +545,17 @@ const root=document.documentElement;
 /* split text into letters */
 document.querySelectorAll('[data-split]').forEach(el=>{
   const base=el.closest('.name')?[...document.querySelectorAll('.name [data-split]')].indexOf(el)*8:0; let i=0;
-  el.innerHTML=[...el.textContent].map(c=>`<span class="ch" aria-hidden="true" style="--i:${base+i++}">${c}</span>`).join('');
+  const text=el.textContent.trim(); if(!el.closest('.name')) el.setAttribute('aria-label',text);
+  // each word stays on one line; lines may only break between words
+  el.innerHTML=text.split(/(\s+)/).map(p=>/^\s+$/.test(p)?' ':
+    `<span class="w" aria-hidden="true">${[...p].map(c=>`<span class="ch" style="--i:${base+i++}">${c}</span>`).join('')}</span>`).join('');
 });
 
 /* preloader: counts while fonts and the 3D scene get ready, then lifts */
 (function(){
   const pre=document.getElementById('pre'), cnt=document.getElementById('preCount'), bar=document.getElementById('preBar');
+  let seen=false; try{seen=sessionStorage.getItem('iw-seen')==='1';sessionStorage.setItem('iw-seen','1')}catch(e){}
+  if(seen){ pre.remove(); root.classList.add('ready'); GL.start=performance.now(); return; } // repeat visit: straight in
   const t0=performance.now(), MIN=reduce?0:1400, MAX=3200; let shown=0, done=false, last=t0;
   const fonts=document.fonts?document.fonts.ready:Promise.resolve();
   let fontsOk=false; fonts.then(()=>fontsOk=true);
@@ -506,6 +577,20 @@ document.querySelectorAll('[data-split]').forEach(el=>{
 
 /* smooth inertia scrolling */
 let lenis=null;
+const mainEl=document.getElementById('main'), footEl=document.querySelector('footer');
+const lockPage=on=>{ [mainEl,footEl].forEach(x=>x.inert=on); if(lenis) on?lenis.stop():lenis.start(); else root.style.overflow=on?'hidden':''; };
+
+/* phone menu */
+const menuBtn=document.getElementById('menuBtn'), menu=document.getElementById('menu');
+function setMenu(open){
+  root.classList.toggle('menu-open',open); menuBtn.setAttribute('aria-expanded',open); menu.setAttribute('aria-hidden',!open);
+  menu.inert=!open; lockPage(open); if(open) menu.querySelector('a').focus({preventScroll:true});
+}
+menu.inert=true;
+menuBtn.addEventListener('click',()=>setMenu(!root.classList.contains('menu-open')));
+menu.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+addEventListener('keydown',e=>{ if(e.key==='Escape'&&root.classList.contains('menu-open')){ setMenu(false); menuBtn.focus(); } });
+addEventListener('resize',()=>{ if(innerWidth>900&&root.classList.contains('menu-open')) setMenu(false); });
 addEventListener('DOMContentLoaded',()=>{
   if(!reduce && window.Lenis){ lenis=new Lenis({lerp:.08,wheelMultiplier:.95,smoothWheel:true});
     (function raf(t){lenis.raf(t);requestAnimationFrame(raf)})(performance.now()); }
@@ -613,13 +698,13 @@ const vt=fn=>{ if(!document.startViewTransition||reduce) return fn();
 let busy=false; const lock=()=>{busy=true;setTimeout(()=>busy=false,1100)};
 function openP(i,li){ if(busy||panel.classList.contains('open')) return; lock();
   document.querySelectorAll('.row h3,#ptitle').forEach(x=>x.style.viewTransitionName='');
-  fill(i); openRow=li; GL.dive=1; GL.hover=i; lenis&&lenis.stop(); const h=li.querySelector('h3'),t=document.getElementById('ptitle');
+  fill(i); openRow=li; GL.dive=1; GL.hover=i; lockPage(true); nav.inert=true; const h=li.querySelector('h3'),t=document.getElementById('ptitle');
   h.style.viewTransitionName='ptitle';
   vt(()=>{h.style.viewTransitionName='';t.style.viewTransitionName='ptitle';panel.style.viewTransitionName='panel';panel.classList.add('open');panel.scrollTop=0});
   setTimeout(()=>document.getElementById('pclose').focus({preventScroll:true}),60);}
 function closeP(){ if(busy||!panel.classList.contains('open'))return; lock(); GL.dive=0; const h=openRow.querySelector('h3'),t=document.getElementById('ptitle');
   vt(()=>{panel.classList.remove('open');t.style.viewTransitionName='';h.style.viewTransitionName='ptitle';panel.style.viewTransitionName=''});
-  setTimeout(()=>{h.style.viewTransitionName='';openRow.focus({preventScroll:true});lenis&&lenis.start()},1000);}
+  setTimeout(()=>{h.style.viewTransitionName='';lockPage(false);nav.inert=false;openRow.focus({preventScroll:true})},1000);}
 document.getElementById('pclose').addEventListener('click',closeP);
 addEventListener('keydown',e=>{if(e.key==='Escape')closeP()});
 
@@ -691,7 +776,7 @@ try{ renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'hi
 renderer.setPixelRatio(Math.min(devicePixelRatio, mobile()?1.5:2));
 renderer.setClearColor(0x0B0607,1);
 renderer.toneMapping=THREE.NeutralToneMapping; renderer.toneMappingExposure=1;
-renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.shadowMap.enabled=!mobile(); renderer.shadowMap.type=THREE.PCFSoftShadowMap; // phones skip shadows
 
 const scene=new THREE.Scene(); scene.fog=new THREE.Fog(0x0B0607,14,28);
 const pmrem=new THREE.PMREMGenerator(renderer);
@@ -751,6 +836,9 @@ const F=[
 const A={p:new THREE.Vector3(),r:new THREE.Vector3(),s:new THREE.Vector3()}, B={p:new THREE.Vector3(),r:new THREE.Vector3(),s:new THREE.Vector3()};
 const dummy=new THREE.Object3D();
 const zones=[...document.querySelectorAll('[data-morph]')];
+const stages=['top','inter','workStage','skillsStage','contactStage'].map(id=>document.getElementById(id)), panelEl=document.getElementById('panel');
+const onScreen=()=>!panelEl.classList.contains('open') && !document.documentElement.classList.contains('menu-open') &&
+  stages.some(el=>{const r=el.getBoundingClientRect(); return r.width>0&&r.bottom>0&&r.top<innerHeight});
 function target(){let f=0;
   zones.forEach((el,k)=>{const r=el.getBoundingClientRect();
     f+= k===0 ? Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)*1.15)) : Math.min(1,Math.max(0,(innerHeight-r.top)/(innerHeight*.75)));});
@@ -764,7 +852,7 @@ function frame(){
   const now=performance.now(), t=reduce?0:(now-t0)/1000;
   fr.t=t; fr.intro=reduce?1:(GL.start?Math.min(1,(now-GL.start)/2600):0); const hfb=heroFoot.getBoundingClientRect().bottom; fr.lift=Math.max(-8.5,Math.min(-3.6,-(hfb/innerHeight*2-1)*halfH-4.5));
   fr.waves=GL.waves.map(w=>({x:w.x*7,z:-w.y*4+1,age:(now-w.t0)/1000})).filter(w=>w.age<3.5);
-  fs+=(target()-fs)*(reduce?1:.06);
+  const tg=target(); fs+=(tg-fs)*(reduce?1:.06);
   dive+=((GL.dive||0)-dive)*.05;
   ringV+=(scrollY-lastY)*.0007; lastY=scrollY; ringV*=.94;
   ring+=((-GL.hover*(Math.PI/2)+Math.PI*.5)-ring)*.04+ringV+.0012;
@@ -772,6 +860,8 @@ function frame(){
   fr.a1=anchor(mobile()?null:'workStage'); fr.a2=anchor(mobile()?null:'skillsStage'); fr.a3=anchor('contactStage');
   cubeE.set(t*.18,t*.26,0); cubeM.makeRotationFromEuler(cubeE);
   mouse.sx+=(mouse.x-mouse.sx)*.045; mouse.sy+=(mouse.y-mouse.sy)*.045;
+  // nothing of the scene on screen and nothing in motion: skip the work, save battery
+  if(GL.ready && Math.abs(tg-fs)<.002 && Math.abs((GL.dive||0)-dive)<.002 && !onScreen()){ if(!reduce) requestAnimationFrame(frame); return; }
   const a=Math.min(3,Math.floor(fs)), b=Math.min(3,a+1), u=fs-a;
   for(let i=0;i<N;i++){
     F[a](i,A); F[b](i,B);
